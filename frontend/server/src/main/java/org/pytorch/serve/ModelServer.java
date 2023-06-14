@@ -450,8 +450,7 @@ public class ModelServer {
     private Server startGRPCServer(ConnectorType connectorType) throws IOException {
 
         ServerBuilder<?> s =
-                NettyServerBuilder.forPort(configManager.getGRPCPort(connectorType))
-                        .listenAddress(new InetSocketAddress("127.0.0.1", configManager.getGRPCPort(connectorType)))
+                NettyServerBuilder.forAddress("localhost", configManager.getGRPCPort(connectorType))
                         .maxInboundMessageSize(configManager.getMaxRequestSize())
                         .addService(
                                 ServerInterceptors.intercept(
