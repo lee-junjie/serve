@@ -451,6 +451,7 @@ public class ModelServer {
 
         ServerBuilder<?> s =
                 NettyServerBuilder.forPort(configManager.getGRPCPort(connectorType))
+                        .listenAddress(new InetSocketAddress("127.0.0.1", configManager.getGRPCPort(connectorType)))
                         .maxInboundMessageSize(configManager.getMaxRequestSize())
                         .addService(
                                 ServerInterceptors.intercept(
